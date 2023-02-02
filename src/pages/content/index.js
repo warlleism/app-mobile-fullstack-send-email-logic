@@ -8,52 +8,59 @@ const screenWidth = Dimensions.get("window").width;
 
 const Content = () => {
 
-    const { dataArray, setDataArray } = useContext(Context)
+    const { dataArray } = useContext(Context)
     const navigation = useNavigation()
 
     return (
         <SafeAreaView>
             <ScrollView style={{ position: 'relative' }}>
 
-
-                <ImageBackground source={require('../../../images/img1.jpg')}
-                    style={{ width: screenWidth, height: 300, overflow: "hidden", position: "relative" }}
-                >
-                    <TouchableHighlight onPress={() => navigation.navigate('Main')}
-                        style={{
-                            position: 'absolute',
-                            top: 20,
-                            left: 10,
-                        }} >
-                        <Icon name="arrowleft" size={40} color={'#ffffff87'} />
-                    </TouchableHighlight>
-
-                    <View style={{
-                        backgroundColor: "#f2f2f2",
-                        width: screenWidth + 300,
-                        height: 100,
-                        position: 'absolute',
-                        bottom: -30,
-                        left: -100,
-                        transform: [{ rotate: '-10deg' }]
-                    }}>
-                    </View>
-
-                </ImageBackground>
-                <Text style={{ fontSize: 20, fontWeight: '900', color: "#9F9900", marginVertical: 30, textAlign: 'center' }}>10 cuidados para se ter com seu pet.</Text>
                 {
-                    dataArray.map((e) => {
+                    dataArray[1].map((e) => {
+                        return (
+                            <View key={e.id}>
+                                <ImageBackground source={e.img}
+                                    style={{ width: screenWidth, height: 300, overflow: "hidden", position: "relative" }}
+                                >
+                                    <TouchableHighlight onPress={() => navigation.navigate('Main')}
+                                        style={{
+                                            position: 'absolute',
+                                            top: 20,
+                                            left: 10,
+                                        }} >
+                                        <Icon name="arrowleft" size={40} color={'#ffffff87'} />
+                                    </TouchableHighlight>
+
+                                    <View style={{
+                                        backgroundColor: "#f2f2f2",
+                                        width: screenWidth + 300,
+                                        height: 100,
+                                        position: 'absolute',
+                                        bottom: -30,
+                                        left: -100,
+                                        transform: [{ rotate: '-10deg' }]
+                                    }}>
+                                    </View>
+                                </ImageBackground>
+                                <Text key={e.titulo} style={{ alignSelf: 'center', width: "90%", fontSize: 20, fontWeight: '900', color: "#9F9900", marginVertical: 30, textAlign: 'center' }}>{e.titulo}</Text>
+                            </View>
+                        )
+                    })
+                }
+
+                {
+                    dataArray[0].map((e) => {
                         return (
                             <View style={style.containerContent} key={e.id}>
                                 <View style={style.conteinerInfo}>
                                     {
-                                        e.titulo
+                                        e.conteudo
                                             ?
-                                            <Text style={{ fontSize: 20, color: '#ffff' }}>{e?.titulo}</Text>
+                                            <Text style={{ fontSize: 20, color: '#ffff' }}>{e?.conteudo}</Text>
                                             :
                                             false
                                     }
-                                    <Text style={{ fontSize: 15, color: '#ffff', marginTop: 10 }}>{e?.texto}</Text>
+                                    <Text style={{ fontSize: 15, color: '#ffff', marginTop: 10, textAlign: 'left' }}>{e?.texto}</Text>
                                 </View>
                             </View>
                         )
