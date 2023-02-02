@@ -1,28 +1,48 @@
 import { useNavigation } from '@react-navigation/native';
 import { useContext } from 'react';
-import { StyleSheet, Text, View, ScrollView, SafeAreaView, ImageBackground, Dimensions, TouchableOpacity, StatusBar, Image } from 'react-native';
-const screenWidth = Dimensions.get("window").width;
+import { Animated, StyleSheet, Text, View, ScrollView, SafeAreaView, ImageBackground, Dimensions, TouchableOpacity, StatusBar, Image } from 'react-native';
+import Icon from 'react-native-vector-icons/AntDesign'
 import { Artigos } from '../article/artigos';
 import { Context } from '../../context/provider';
+import { useState } from 'react';
 
+
+const { width } = Dimensions.get("window")
+const { height } = Dimensions.get("window")
 
 const Main = () => {
 
     const { setDataArray } = useContext(Context)
     const navigation = useNavigation()
 
+    const [posicao] = useState(new Animated.Value(-3200))
+
+    function Animacao(value) {
+        Animated.timing(
+            posicao,
+            {
+                toValue: value,
+                duration: 600,
+                useNativeDriver: true
+            }
+        ).start()
+    }
+
     return (
         <SafeAreaView>
-            <ScrollView >
+
+            <ScrollView>
                 <View style={style.containerMain}>
                     <ImageBackground source={require('../../../images/dog-main.jpg')} resizeMode="cover" style={style.containerImgMenu}>
-                        <View style={style.menu}>
+
+                        <TouchableOpacity onPress={() => Animacao(0)} style={style.menu}>
                             <View style={style.menuLines}>
                                 <View style={style.line1}></View>
                                 <View style={style.line2}></View>
                                 <View style={style.line3}></View>
                             </View>
-                        </View>
+                        </TouchableOpacity>
+
                         <View style={style.toptitulo}>
                             <Text style={{ color: "#fff", textAlign: 'right', fontSize: 20, fontWeight: "200" }}>
                                 Amor e dedicação a <Text style={{ fontWeight: "900" }}>Saúde Do Seu <Text style={{ color: "#9F9900" }}>Pet.</Text></Text>
@@ -38,7 +58,7 @@ const Main = () => {
                             setDataArray(Artigos[0])
                             navigation.navigate('Content')
                         }}
-                            style={{ height: 130, flex: 1, width: screenWidth - 30, marginBottom: 30, position: 'relative' }}>
+                            style={{ height: 130, flex: 1, width: width - 30, marginBottom: 30, position: 'relative' }}>
                             <ImageBackground source={require('../../../images/img1.jpg')} style={style.cardArtigo} resizeMode={'cover'}>
                                 <Text style={{ color: "#fff", letterSpacing: 4, width: '70%', marginTop: 30, marginLeft: 20 }}>10 cuidados para se ter com seu pet.</Text>
                             </ImageBackground>
@@ -49,7 +69,7 @@ const Main = () => {
                         <TouchableOpacity TouchableOpacity onPress={() => {
                             setDataArray(Artigos[1])
                             navigation.navigate('Content')
-                        }} style={{ height: 130, flex: 1, width: screenWidth - 30, marginBottom: 30, position: 'relative' }}>
+                        }} style={{ height: 130, flex: 1, width: width - 30, marginBottom: 30, position: 'relative' }}>
                             <ImageBackground source={require('../../../images/img2.png')} style={style.cardArtigo} resizeMode={'cover'}>
                                 <Text style={{ color: "#fff", letterSpacing: 4, width: '70%', marginTop: 30, marginLeft: 20 }}>As vacinas do seu pet estão em dia? se não, clique e saiba mais.</Text>
                             </ImageBackground>
@@ -60,7 +80,7 @@ const Main = () => {
                         <TouchableOpacity TouchableOpacity onPress={() => {
                             setDataArray(Artigos[2])
                             navigation.navigate('Content')
-                        }} style={{ height: 130, flex: 1, width: screenWidth - 30, marginBottom: 30, position: 'relative' }}>
+                        }} style={{ height: 130, flex: 1, width: width - 30, marginBottom: 30, position: 'relative' }}>
                             <ImageBackground source={require('../../../images/img3.png')} style={style.cardArtigo} resizeMode={'cover'}>
                                 <Text style={{ color: "#fff", letterSpacing: 4, width: '70%', marginTop: 30, marginLeft: 20 }}>Conheça formas de prevenir doenças em seu pet.</Text>
                             </ImageBackground>
@@ -79,10 +99,33 @@ const Main = () => {
                             <Text style={{ letterSpacing: 3, width: '90%', fontSize: 10, textAlign: "center", color: "#9F9900", marginTop: 30, }}>Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XVI, quando um impressor desconhecido pegou uma bandeja de tipos e os embaralhou para fazer um livro de modelos de tipos. Lorem Ipsum sobreviveu não só a cinco séculos, como também ao salto para a editoração eletrônica, permanecendo essencialmente inalterado.</Text>
                         </View>
                     </View>
-
-
                 </View>
             </ScrollView>
+
+            <Animated.View style={{ position: 'absolute', left: 0, top: 0, width: "60%", height: height, backgroundColor: "#fff", transform: [{ translateX: posicao }] }}>
+
+                <TouchableOpacity onPress={() => Animacao(-3200)}
+                    activeOpacity={1}
+                    underlayColor="#9F9900"
+                    style={{
+                        position: 'absolute',
+                        top: 10,
+                        right: 10,
+                        borderRadius: 100,
+                    }} >
+                    <Icon name="close" size={40} color={'#92a904'} />
+                </TouchableOpacity>
+
+                <View style={style.containerNav}>
+                    <TouchableOpacity onPress={() => navigation.navigate('Agendamento')}>
+                        <Text style={{ fontSize: 20, color: '#92a904', marginLeft: 10 }}>Agendamento</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => navigation.navigate('Contato')}>
+                        <Text style={{ fontSize: 20, color: '#92a904', marginLeft: 10 }}>Contato</Text>
+                    </TouchableOpacity>
+                </View>
+
+            </Animated.View>
 
             <StatusBar hidden />
 
@@ -105,8 +148,9 @@ const style = StyleSheet.create({
 
     menu: {
         top: 30,
-        height: 30,
-        width: '90%',
+        height: 50,
+        left: 20,
+        width: 60,
         display: 'flex',
         alignSelf: 'center',
         flexDirection: 'row',
@@ -122,7 +166,7 @@ const style = StyleSheet.create({
 
     menuLines: {
         width: 80,
-        height: '100%',
+        height: '50%',
         display: 'flex',
         flexDirection: "column",
         justifyContent: 'space-between',
@@ -180,7 +224,7 @@ const style = StyleSheet.create({
         justifyContent: "center",
         marginBottom: 50,
         marginTop: 20,
-        width: screenWidth - 30,
+        width: width - 30,
         backgroundColor: '#92a9041f',
         borderRadius: 20,
         paddingVertical: 30,
@@ -195,6 +239,12 @@ const style = StyleSheet.create({
         borderWidth: 3,
         borderColor: "#92a9041f",
         borderRadius: 50,
+    },
+
+    containerNav: {
+        justifyContent: 'space-between',
+        height: 100,
+        marginTop: 100
     }
 
 
