@@ -1,22 +1,25 @@
 
 const nodemailer = require('nodemailer')
 
-const transport = nodemailer.createTransport({
-    host: "smtp.gmail.com",
-    port: 587,
-    secure: false,
-    auth: {
-        user: "warlleimartinsprof@gmail.com",
-        pass: "npsudirxzncgstfr"
-    },
-    tls: {
-        rejectUnauthorized: false,
-    }
 
-})
 
 const Contato = async (req, res) => {
     // var { nome, telefone, email, descricao } = req.body;
+
+    const transport = nodemailer.createTransport({
+        host: "smtp.gmail.com",
+        port:process.env.PORT_MAIL,
+        secure: false,
+        auth: {
+            user: process.env.PRIVATE_EMAIL,
+            pass: process.env.PRIVATE_PASSWORD
+        },
+        tls: {
+            rejectUnauthorized: false,
+        }
+
+    })
+
 
     try {
 
@@ -27,7 +30,7 @@ const Contato = async (req, res) => {
             to: ["warlleimartinsdev@outlook.com"]
         })
 
-        return res.send({mailSent})
+        return res.send({ mailSent })
 
     } catch (err) {
         return res.send({ err: err })

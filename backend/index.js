@@ -4,6 +4,7 @@ const cors = require('cors')
 const app = express()
 const routes = require('./src/routes/route')
 
+require('dotenv').config()
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
