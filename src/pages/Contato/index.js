@@ -1,4 +1,4 @@
-import { ActivityIndicator, StyleSheet, Text, View, ScrollView, SafeAreaView, Dimensions, StatusBar, TouchableHighlight, Image, TextInput } from 'react-native';
+import { ActivityIndicator, StyleSheet, Text, Alert, Modal, View, ScrollView, SafeAreaView, Dimensions, StatusBar, TouchableHighlight, Image, TextInput, Pressable } from 'react-native';
 import { TextInputMask } from "react-native-masked-text";
 import Icon from 'react-native-vector-icons/AntDesign'
 import { useNavigation } from '@react-navigation/native';
@@ -12,6 +12,7 @@ const Contato = () => {
     const navigation = useNavigation()
     const [valor, setValor] = useState("")
     const [spinner, setSpinner] = useState(false);
+    const [modalVisible, setModalVisible] = useState(false);
 
     const default_form = {
         nome: '',
@@ -20,9 +21,8 @@ const Contato = () => {
         genero: '',
         descricao: ''
     }
-    const [formulario, setFormulario] = useState(default_form)
+    const [formulario, setFormulario] = useState(default_form);
 
-    
     const OptionsRegister = {
         body: JSON.stringify(formulario),
         method: 'POST',
@@ -30,27 +30,26 @@ const Contato = () => {
             'Content-Type': 'application/json',
         },
     };
-    
-    const PostData = async () => {
 
-        await fetch(url, OptionsRegister)
-            .then(res => res.json())
-            .then(data => {
-                if (data.status == 200) {
-                    setSpinner(false)
-                } else {
-                    setSpinner(false)
-                }
-            })
 
+    const postData = async () => {
         setSpinner(!spinner)
-    }
+        try {
+            const response = await fetch('https://deploy-node-vercel-warlleism.vercel.app/email', OptionsRegister);
+            const json = await response.json();
+            if (json.status == 200) {
+                setSpinner(false)
+                setModalVisible(!modalVisible)
+            }
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
 
 
     return (
         <SafeAreaView>
-            {console.log(formulario)}
-
             <ScrollView style={{ position: 'relative' }}>
 
                 <View style={{ width: width, height: 300, overflow: "hidden", position: "relative", backgroundColor: '#9F9900' }}>
@@ -125,7 +124,7 @@ const Contato = () => {
                         <Text style={style.textInput}>Descrição</Text>
                     </View>
 
-                    <TouchableHighlight onPress={() => PostData()} style={{
+                    <TouchableHighlight onPress={() => postData()} style={{
                         width: '90%',
                         padding: 17,
                         alignItems: 'center',
@@ -149,6 +148,29 @@ const Contato = () => {
                     :
                     false
             }
+
+            <Modal
+                animationType="fade"
+                transparent={true}
+                visible={modalVisible}
+                onRequestClose={() => {
+                    Alert.alert('Modal has been closed.');
+                    setModalVisible(!modalVisible);
+                }}>
+
+                <View style={style.centeredView}>
+                    <View style={style.modalView}>
+                        <Text style={style.modalText}>Enviado com sucesso!</Text>
+                        <Pressable
+                            style={[style.button, style.buttonClose]}
+                            onPress={() => setModalVisible(!modalVisible)}>
+                            <Text style={style.textStyle}>Fechar</Text>
+                        </Pressable>
+                    </View>
+                </View>
+            </Modal>
+
+
             <StatusBar hidden />
         </SafeAreaView>
     )
@@ -177,6 +199,7 @@ const style = StyleSheet.create({
     },
 
     input: {
+        color: "#9F9900",
         borderRadius: 10,
         width: '100%',
         paddingVertical: 15,
@@ -186,7 +209,51 @@ const style = StyleSheet.create({
         marginBottom: 20,
         padding: 10
 
-    }
+    },
+    centeredView: {
+        height: height,
+        backgroundColor: '#000000a6',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    modalView: {
+        margin: 20,
+        backgroundColor: 'white',
+        borderRadius: 20,
+        padding: 35,
+        alignItems: 'center',
+        shadowColor: '#000',
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 4,
+        elevation: 5,
+    },
+    button: {
+        borderRadius: 5,
+        paddingHorizontal: 40,
+        paddingVertical: 20,
+        elevation: 2,
+    },
+    buttonOpen: {
+        backgroundColor: '#F194FF',
+    },
+    buttonClose: {
+        backgroundColor: '#9F9900',
+    },
+    textStyle: {
+        color: 'white',
+        fontWeight: 'bold',
+        textAlign: 'center',
+        fontSize: 15
+    },
+    modalText: {
+        fontSize: 20,
+        marginBottom: 15,
+        textAlign: 'center',
+    },
 
 
 })

@@ -1,0 +1,7 @@
+É necessário ter as dependencias do vercel para rodar o backend
+
+- criar conta no vercel e víncular a um dos gerenciadores de projeto. (eu uso GitHub)
+- npm i vercel -g
+- vercel login (autenticação)
+- vercel deploy
+- será gerado uma url (preview) - através dela vc ira ter acesso as apis (ex: https://deploy-node-vercel-warlleism.vercel.app, https://deploy-node-vercel-warlleism.vercel.app/email)
