@@ -117,10 +117,16 @@ const Main = () => {
                 </TouchableOpacity>
 
                 <View style={style.containerNav}>
-                    <TouchableOpacity onPress={() => navigation.navigate('Agendamento')}>
+                    <TouchableOpacity onPress={() => {
+                        Animacao(-3200)
+                        navigation.navigate('Agendamento')
+                    }}>
                         <Text style={{ fontSize: 20, color: '#92a904', marginLeft: 10 }}>Agendamento</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={() => navigation.navigate('Contato')}>
+                    <TouchableOpacity onPress={() => {
+                        Animacao(-3200)
+                        navigation.navigate('Contato')
+                    }}>
                         <Text style={{ fontSize: 20, color: '#92a904', marginLeft: 10 }}>Contato</Text>
                     </TouchableOpacity>
                 </View>
