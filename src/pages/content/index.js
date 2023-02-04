@@ -21,18 +21,6 @@ const Content = () => {
                                 <ImageBackground source={e.img}
                                     style={{ width: screenWidth, height: 300, overflow: "hidden", position: "relative" }}
                                 >
-                                    <TouchableHighlight onPress={() => navigation.navigate('Main')}
-                                        activeOpacity={1}
-                                        underlayColor="#9F9900"
-                                        style={{
-                                            position: 'absolute',
-                                            top: 20,
-                                            left: 10,
-                                            borderRadius: 100,
-                                        }} >
-                                        <Icon name="arrowleft" size={40} color={'#fff'} />
-                                    </TouchableHighlight>
-
                                     <View style={{
                                         backgroundColor: "#f2f2f2",
                                         width: screenWidth + 300,
@@ -68,8 +56,19 @@ const Content = () => {
                         )
                     })
                 }
-
             </ScrollView>
+
+            <TouchableHighlight onPress={() => navigation.navigate('Main')}
+                activeOpacity={1}
+                underlayColor="#9F9900"
+                style={{
+                    position: 'absolute',
+                    top: 20,
+                    left: 10,
+                    borderRadius: 100,
+                }} >
+                <Icon name="arrowleft" size={40} color={'#fff'} />
+            </TouchableHighlight>
 
             <StatusBar hidden />
         </SafeAreaView>

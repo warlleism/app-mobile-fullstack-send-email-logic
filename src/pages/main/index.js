@@ -94,9 +94,9 @@ const Main = () => {
 
                         <View style={style.containerSobremin}>
                             <ImageBackground source={require('../../../images/doctor.png')} style={style.sobremin} resizeMode={'cover'}></ImageBackground>
-                            <Text style={{ letterSpacing: 3, fontSize: 20, textAlign: "center", color: "#9F9900", fontWeight: '900', }}>Antonia Pereira</Text>
-                            <Text style={{ letterSpacing: 1, fontSize: 10, textAlign: "center", color: "#9F9900", fontWeight: '300', }}>Médica Veterinária</Text>
-                            <Text style={{ letterSpacing: 3, width: '90%', fontSize: 10, textAlign: "center", color: "#9F9900", marginTop: 30, }}>Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XVI, quando um impressor desconhecido pegou uma bandeja de tipos e os embaralhou para fazer um livro de modelos de tipos. Lorem Ipsum sobreviveu não só a cinco séculos, como também ao salto para a editoração eletrônica, permanecendo essencialmente inalterado.</Text>
+                            <Text style={{ letterSpacing: 3, fontSize: 20, textAlign: "center", color: "#343434", fontWeight: '900', }}>Antonia Pereira</Text>
+                            <Text style={{ letterSpacing: 1, fontSize: 10, textAlign: "center", color: "#ADADAD", fontWeight: '300', }}>Médica Veterinária</Text>
+                            <Text style={{ letterSpacing: 3, width: '90%', fontSize: 10, textAlign: "center", color: "#000000", marginTop: 30, }}>Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XVI, quando um impressor desconhecido pegou uma bandeja de tipos e os embaralhou para fazer um livro de modelos de tipos. Lorem Ipsum sobreviveu não só a cinco séculos, como também ao salto para a editoração eletrônica, permanecendo essencialmente inalterado.</Text>
                         </View>
                     </View>
                 </View>
@@ -117,12 +117,6 @@ const Main = () => {
                 </TouchableOpacity>
 
                 <View style={style.containerNav}>
-                    <TouchableOpacity onPress={() => {
-                        Animacao(-3200)
-                        navigation.navigate('Agendamento')
-                    }}>
-                        <Text style={{ fontSize: 20, color: '#92a904', marginLeft: 10 }}>Agendamento</Text>
-                    </TouchableOpacity>
                     <TouchableOpacity onPress={() => {
                         Animacao(-3200)
                         navigation.navigate('Contato')
@@ -231,7 +225,6 @@ const style = StyleSheet.create({
         marginBottom: 50,
         marginTop: 20,
         width: width - 30,
-        backgroundColor: '#92a9041f',
         borderRadius: 20,
         paddingVertical: 30,
 
@@ -242,8 +235,6 @@ const style = StyleSheet.create({
         width: 90,
         borderRadius: 100,
         overflow: "hidden",
-        borderWidth: 3,
-        borderColor: "#92a9041f",
         borderRadius: 50,
     },
 

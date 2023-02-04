@@ -58,7 +58,7 @@ export const Artigos = [
         [
             {
                 id: 1,
-                img: require('../../../images/img1.jpg'),
+                img: require('../../../images/img1-page-2.png'),
                 titulo: '10 cuidados para se ter com seu pet.'
             }
         ]
@@ -92,7 +92,7 @@ Dia 3 de setembro na região 5.
         [
             {
                 id: 1,
-                img: require('../../../images/img2.png'),
+                img: require('../../../images/img2-page-2.png'),
                 titulo: 'Campanha de Vacinação contra Raiva.'
             }
         ]
@@ -129,7 +129,7 @@ Dia 3 de setembro na região 5.
 
             {
                 id: 6,
-                conteudo: '5. Visitas ao veterinário',
+                conteudo: '6. Visitas ao veterinário',
                 texto: "Quando o pet ainda é filhote, as visitas ao veterinário deverão ter maior frequência. O ideal é que sejam de 3 em 3 meses, pois o filhote está em desenvolvimento e sua imunidade também. Animais adultos devem fazer uma consulta com o veterinário ao menos uma vez por ano. Já os pets idosos também precisam de um cuidado especial, as visitas ao veterinário podem ser menos espaçadas, mas é recomendado que, a cada 4 meses, se faça exames para verificar como está a saúde do seu pet."
             },
 
@@ -137,7 +137,7 @@ Dia 3 de setembro na região 5.
         [
             {
                 id: 1,
-                img: require('../../../images/img3.png'),
+                img: require('../../../images/img3-page-2.png'),
                 titulo: '5 dicas para prevenção de doenças em pet.'
             }
         ]

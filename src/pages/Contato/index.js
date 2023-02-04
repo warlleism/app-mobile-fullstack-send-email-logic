@@ -50,20 +50,9 @@ const Contato = () => {
 
     return (
         <SafeAreaView>
+            
             <ScrollView style={{ position: 'relative' }}>
-
                 <View style={{ width: width, height: 300, overflow: "hidden", position: "relative", backgroundColor: '#9F9900' }}>
-                    <TouchableHighlight onPress={() => navigation.navigate('Main')}
-                        activeOpacity={1}
-                        underlayColor="#9F9900"
-                        style={{
-                            position: 'absolute',
-                            top: 20,
-                            left: 10,
-                            borderRadius: 100,
-                        }} >
-                        <Icon name="arrowleft" size={40} color={'#fff'} />
-                    </TouchableHighlight>
                     <Image style={{ position: 'absolute', left: '20%', top: '10%' }} source={require('../../../images/icons/icon1.png')} />
                     <Image style={{ position: 'absolute', left: '50%', top: '40%' }} source={require('../../../images/icons/icon2.png')} />
                     <Image style={{ position: 'absolute', left: '10%', top: '40%' }} source={require('../../../images/icons/icon3.png')} />
@@ -80,7 +69,7 @@ const Contato = () => {
                     </View>
                 </View>
 
-                <Text style={{ alignSelf: 'center', width: "90%", fontSize: 20, fontWeight: '900', color: "#9F9900", marginBottom: 60, marginTop: 30, textAlign: 'center' }}>Contato</Text>
+                <Text style={{ alignSelf: 'center', width: "90%", fontSize: 30, fontWeight: '600', color: "#9F9900", marginBottom: 50, marginTop: 20, textAlign: 'center' }}>Contato</Text>
 
                 <View style={style.containerInputsContent}>
 
@@ -135,8 +124,6 @@ const Contato = () => {
                         <Text style={{ color: "#fff", fontWeight: '800' }}>Enviar</Text>
                     </TouchableHighlight>
                 </View>
-
-
             </ScrollView>
 
             {
@@ -169,6 +156,18 @@ const Contato = () => {
                     </View>
                 </View>
             </Modal>
+
+            <TouchableHighlight onPress={() => navigation.navigate('Main')}
+                activeOpacity={1}
+                underlayColor="#9F9900"
+                style={{
+                    position: 'absolute',
+                    top: 20,
+                    left: 10,
+                    borderRadius: 100,
+                }} >
+                <Icon name="arrowleft" size={40} color={'#fff'} />
+            </TouchableHighlight>
 
 
             <StatusBar hidden />
